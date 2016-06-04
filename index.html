@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=yes"/>
+<link rel="stylesheet" href="style.css">
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+//区のデータ格納用配列（グローバル）
+var ku_data = new Array();
+var select_ku = 0; //現在選択されている区Noの確保用
+var ku_address; //区役所地図ボタン押した時マップジャンプ用
+var ku_hp; //区役所HP
+function getKuData(){
+	var xhr = new XMLHttpRequest();
+	xhr.onload = function(){
+		var tempArray = xhr.responseText.split("\n");
+		for (var i=0;i<tempArray.length;i++){
+			var strText = tempArray[i].split(",");
+			ku_data.push(strText);
+		}
+		//console.log(ku_data);
+	};
+	xhr.open("get", "ku_data.csv", true);
+	xhr.send(null);
+}
+getKuData();
+
+//市会議員データ
+var council_data = new Array();
+var c1_address; //市会議員地図ボタン押した時マップジャンプ用
+var c2_address;
+var c3_address;
+var c4_address;
+var c5_address;
+var c6_address;
+var council_hp;
+var council1;
+var council2;
+var council3;
+var council4;
+var council5;
+var council6;
+function getCouncilData(){
+	var xhr = new XMLHttpRequest();
+	xhr.onload = function(){
+		var tempArray = xhr.responseText.split("\n");
+		for (var i=0;i<tempArray.length;i++){
+			var strText = tempArray[i].split(",");
+			council_data.push(strText);
+		}
+		console.log(council_data);
+	};
+	xhr.open("get", "council_data.csv", true);
+	xhr.send(null);
+}
+getCouncilData();
+
+//マップ表示
+$(function() {
+    var g;
+	var width  = window.innerWidth;
+	var height = window.innerHeight;
+	//scaleはスクリーンの大きさによって変更
+	var scale;
+	// svg要素を作成し、データの受け皿となるg要素を追加している
+	map = d3.select('#map')
+			.append('svg')
+			.attr('width', width)
+			.attr('height', height)
+			.append('g');
+	// 同じディレクトリにあるgeojsonファイルをhttp経由で読み込む    
+	d3.json("osakacity.json", function(json) {
+			var projection,path;
+			//ツールチップを生成
+			var tooltip=d3.select('body')
+						  .append('div')
+						  .attr('class', "tip")
+			//（しばらく保留）区長画像表示「枠」を生成
+			//var kucho_pic=d3.select('body')
+			//				.append('div')
+			//				.attr('class', "kucho_pic")
+			//				.append('img')
+			//区長氏名表示「枠」を生成
+			var kucho_name=d3.select('body').append('div').attr('class', "kucho_name")
+			//区役所HPボタン生成
+			var ku_hpbtn=d3.select('body').append('div').attr('class', "ku_hpbtn")
+			ku_hpbtn.text("区役所HP")
+				  .on('click', function(d) {
+                  // clickされたら区HPにジャンプ
+					window.location.href=ku_hp;
+				  });
+			//区役所地図ボタン生成
+			var ku_btn=d3.select('body').append('div').attr('class', "ku_btn")
+			ku_btn.text("区役所地図")
+				  .on('click', function(d) {
+                  // clickされたらgoogle mapで住所検索
+					window.location.href="https://www.google.co.jp/maps/place/"+ku_address;
+				  });
+			//区人口表示「枠」生成
+			var poplblA=d3.select('body').append('div').attr('id', "poplblA").text("年齢別推計人口")
+			var poplblB=d3.select('body').append('div').attr('id', "poplblB").text("平成26年10月")
+			var poplbl0=d3.select('body').append('div').attr('id', "poplbl0").text("総数")
+			var poplbl1=d3.select('body').append('div').attr('id', "poplbl1").text("0~4")
+			var poplbl2=d3.select('body').append('div').attr('id', "poplbl2").text("5~9")
+			var poplbl3=d3.select('body').append('div').attr('id', "poplbl3").text("10~14")
+			var poplbl4=d3.select('body').append('div').attr('id', "poplbl4").text("15~19")
+			var poplbl5=d3.select('body').append('div').attr('id', "poplbl5").text("20~24")
+			var poplbl6=d3.select('body').append('div').attr('id', "poplbl6").text("25~29")
+			var poplbl7=d3.select('body').append('div').attr('id', "poplbl7").text("30~34")
+			var poplbl8=d3.select('body').append('div').attr('id', "poplbl8").text("35~39")
+			var poplbl9=d3.select('body').append('div').attr('id', "poplbl9").text("40~44")
+			var poplbl10=d3.select('body').append('div').attr('id', "poplbl10").text("45~49")
+			var poplbl11=d3.select('body').append('div').attr('id', "poplbl11").text("50~54")
+			var poplbl12=d3.select('body').append('div').attr('id', "poplbl12").text("55~59")
+			var poplbl13=d3.select('body').append('div').attr('id', "poplbl13").text("60~64")
+			var poplbl14=d3.select('body').append('div').attr('id', "poplbl14").text("65~69")
+			var poplbl15=d3.select('body').append('div').attr('id', "poplbl15").text("70~74")
+			var poplbl16=d3.select('body').append('div').attr('id', "poplbl16").text("75~79")
+			var poplbl17=d3.select('body').append('div').attr('id', "poplbl17").text("80~84")
+			var poplbl18=d3.select('body').append('div').attr('id', "poplbl18").text("85~89")
+			var poplbl19=d3.select('body').append('div').attr('id', "poplbl19").text("90~94")
+			var poplbl20=d3.select('body').append('div').attr('id', "poplbl20").text("95~99")
+			var poplbl21=d3.select('body').append('div').attr('id', "poplbl21").text("100~")
+			var poplbl22=d3.select('body').append('div').attr('id', "poplbl22").text("不詳")
+			var pop0=d3.select('body').append('div').attr('id', "pop0")
+			var pop1=d3.select('body').append('div').attr('id', "pop1")
+			var pop2=d3.select('body').append('div').attr('id', "pop2")
+			var pop3=d3.select('body').append('div').attr('id', "pop3")
+			var pop4=d3.select('body').append('div').attr('id', "pop4")
+			var pop5=d3.select('body').append('div').attr('id', "pop5")
+			var pop6=d3.select('body').append('div').attr('id', "pop6")
+			var pop7=d3.select('body').append('div').attr('id', "pop7")
+			var pop8=d3.select('body').append('div').attr('id', "pop8")
+			var pop9=d3.select('body').append('div').attr('id', "pop9")
+			var pop10=d3.select('body').append('div').attr('id', "pop10")
+			var pop11=d3.select('body').append('div').attr('id', "pop11")
+			var pop12=d3.select('body').append('div').attr('id', "pop12")
+			var pop13=d3.select('body').append('div').attr('id', "pop13")
+			var pop14=d3.select('body').append('div').attr('id', "pop14")
+			var pop15=d3.select('body').append('div').attr('id', "pop15")
+			var pop16=d3.select('body').append('div').attr('id', "pop16")
+			var pop17=d3.select('body').append('div').attr('id', "pop17")
+			var pop18=d3.select('body').append('div').attr('id', "pop18")
+			var pop19=d3.select('body').append('div').attr('id', "pop19")
+			var pop20=d3.select('body').append('div').attr('id', "pop20")
+			var pop21=d3.select('body').append('div').attr('id', "pop21")
+			var pop22=d3.select('body').append('div').attr('id', "pop22")
+			//年齢別人口　表示/非表示切り替え
+			var poptoggle=d3.select('body').append('div').attr('class', "poptoggle")
+			poptoggle.text("表示/非表示").on('click', function(d){
+				$('#poplbl1').toggle();
+				$('#poplbl2').toggle();
+				$('#poplbl3').toggle();
+				$('#poplbl4').toggle();
+				$('#poplbl5').toggle();
+				$('#poplbl6').toggle();
+				$('#poplbl7').toggle();
+				$('#poplbl8').toggle();
+				$('#poplbl9').toggle();
+				$('#poplbl10').toggle();
+				$('#poplbl11').toggle();
+				$('#poplbl12').toggle();
+				$('#poplbl13').toggle();
+				$('#poplbl14').toggle();
+				$('#poplbl15').toggle();
+				$('#poplbl16').toggle();
+				$('#poplbl17').toggle();
+				$('#poplbl18').toggle();
+				$('#poplbl19').toggle();
+				$('#poplbl20').toggle();
+				$('#poplbl21').toggle();
+				$('#poplbl22').toggle();
+				$('#pop1').toggle();
+				$('#pop2').toggle();
+				$('#pop3').toggle();
+				$('#pop4').toggle();
+				$('#pop5').toggle();
+				$('#pop6').toggle();
+				$('#pop7').toggle();
+				$('#pop8').toggle();
+				$('#pop9').toggle();
+				$('#pop10').toggle();
+				$('#pop11').toggle();
+				$('#pop12').toggle();
+				$('#pop13').toggle();
+				$('#pop14').toggle();
+				$('#pop15').toggle();
+				$('#pop16').toggle();
+				$('#pop17').toggle();
+				$('#pop18').toggle();
+				$('#pop19').toggle();
+				$('#pop20').toggle();
+				$('#pop21').toggle();
+				$('#pop22').toggle();
+			});
+			//区選出議員市会HPボタン生成
+			var council_hpbtn=d3.select('body').append('div').attr('class', "council_hpbtn hover")
+			council_hpbtn.text("議員名簿HP").on('click', function(d) { window.location.href=council_hp; });
+			//議員id
+			var id_council1=d3.select('body').append('div').attr('id', "council1")
+			var id_council2=d3.select('body').append('div').attr('id', "council2")
+			var id_council3=d3.select('body').append('div').attr('id', "council3")
+			var id_council4=d3.select('body').append('div').attr('id', "council4")
+			var id_council5=d3.select('body').append('div').attr('id', "council5")
+			var id_council6=d3.select('body').append('div').attr('id', "council6")
+			//議員事務所地図ボタン生成
+			var c1_btn=d3.select('body').append('div').attr('id', "c1_btn")
+			c1_btn.text("事務所").on('click', function(d) { window.location.href="https://www.google.co.jp/maps/place/"+c1_address;});
+			var c2_btn=d3.select('body').append('div').attr('id', "c2_btn")
+			c2_btn.text("事務所").on('click', function(d) { window.location.href="https://www.google.co.jp/maps/place/"+c2_address;});
+			var c3_btn=d3.select('body').append('div').attr('id', "c3_btn")
+			c3_btn.text("事務所").on('click', function(d) { window.location.href="https://www.google.co.jp/maps/place/"+c3_address;});
+			var c4_btn=d3.select('body').append('div').attr('id', "c4_btn")
+			c4_btn.text("事務所").on('click', function(d) { window.location.href="https://www.google.co.jp/maps/place/"+c4_address;});
+			var c5_btn=d3.select('body').append('div').attr('id', "c5_btn")
+			c5_btn.text("事務所").on('click', function(d) { window.location.href="https://www.google.co.jp/maps/place/"+c5_address;});
+			var c6_btn=d3.select('body').append('div').attr('id', "c6_btn")
+			c6_btn.text("事務所").on('click', function(d) { window.location.href="https://www.google.co.jp/maps/place/"+c6_address;});
+			// 投影を処理する関数を用意する。データからSVGのPATHに変換するため。
+			//その前に、スケールを計算。PCはブラウザが横長だからwidthをベースに計算する。でもスマホはブラウザが縦長だからheightをベースに計算する。
+			if (width>height){ 
+				scale = width*100;
+			} else {
+				scale = height*150;
+			}
+			projection = d3.geo.mercator()
+						   .scale(scale)
+						   .center(d3.geo.centroid(json))  // データから中心点を計算 .center(d3.geo.centroid(json)) 
+						   .translate([width/2, height/3]); //計算した中心点を左右中央、高さは1/3にセット
+			// pathジェネレータ関数
+			path = d3.geo.path().projection(projection);
+			// これがenterしたデータ毎に呼び出されpath要素のd属性にgeoJSONデータから変換した値を入れる                
+			map.selectAll('path')
+			   .data(json.features)
+			   .enter()
+			   .append('path')
+			   .attr('d', path)
+			   .style("fill", function(d){
+			           return d.properties.color;
+			          })
+			   .attr("fill", function(d){
+			   // 適当に色を塗るなど
+					return "hsl(0,0%,80%)";
+			   })
+			   .attr("stroke","white" )
+			   .on('mouseover', function(d){
+					// mouseoverの時のインタラクション
+					d3.select(this).style("fill", "red"); //選択区の色を赤に
+					select_ku = d.properties.index; //選択区のインデックスを取得
+					ku_address = ku_data[select_ku][4]; //区役所住所格納
+					ku_hp = ku_data[select_ku][5]; //区役所HPのURL格納
+					council1 = ku_data[select_ku][6];//選択区の議員1のインデックス
+					council2 = ku_data[select_ku][7];
+					council3 = ku_data[select_ku][8];
+					council4 = ku_data[select_ku][9];
+					council5 = ku_data[select_ku][10];
+					council6 = ku_data[select_ku][11];
+					council_hp = ku_data[select_ku][12]; //選挙区議員名簿HPのURL
+					//区名を表示するツールチップを表示
+					var name=d.properties.name;
+					tooltip.style("visibility", "visible")
+						   .text(name)
+					//区長の顔写真を大阪市HPから取得して表示
+					//var url=d.properties.kucho_pic;
+					//kucho_pic.attr('src', url)
+					//区長名
+					var kuchoname="区長 "+ku_data[select_ku][2];
+					kucho_name.text(kuchoname)
+					//区　人口
+					pop0.text(ku_data[select_ku][13]) //総数
+					pop1.text(ku_data[select_ku][14])
+					pop2.text(ku_data[select_ku][15])
+					pop3.text(ku_data[select_ku][16])
+					pop4.text(ku_data[select_ku][17])
+					pop5.text(ku_data[select_ku][18])
+					pop6.text(ku_data[select_ku][19])
+					pop7.text(ku_data[select_ku][20])
+					pop8.text(ku_data[select_ku][21])
+					pop9.text(ku_data[select_ku][22])
+					pop10.text(ku_data[select_ku][23])
+					pop11.text(ku_data[select_ku][24])
+					pop12.text(ku_data[select_ku][25])
+					pop13.text(ku_data[select_ku][26])
+					pop14.text(ku_data[select_ku][27])
+					pop15.text(ku_data[select_ku][28])
+					pop16.text(ku_data[select_ku][29])
+					pop17.text(ku_data[select_ku][30])
+					pop18.text(ku_data[select_ku][31])
+					pop19.text(ku_data[select_ku][32])
+					pop20.text(ku_data[select_ku][33])
+					pop21.text(ku_data[select_ku][34])
+					pop22.text(ku_data[select_ku][35])
+					//議員
+					var c1_name = council_data[council1][1];
+					var c2_name = council_data[council2][1];
+					var c3_name = council_data[council3][1];
+					var c4_name = council_data[council4][1];
+					var c5_name = council_data[council5][1];
+					var c6_name = council_data[council6][1];
+					id_council1.text(c1_name)
+					id_council2.text(c2_name)
+					id_council3.text(c3_name)
+					id_council4.text(c4_name)
+					id_council5.text(c5_name)
+					id_council6.text(c6_name)
+					//事務所住所格納
+					c1_address = council_data[council1][5];
+					if (c1_address==""){ c1_btn.style("visibility", "hidden"); } else { c1_btn.style("visibility", "visible"); }
+					c2_address = council_data[council2][5];
+					if (c2_address==""){ c2_btn.style("visibility", "hidden"); } else { c2_btn.style("visibility", "visible"); }
+					c3_address = council_data[council3][5];
+					if (c3_address==""){ c3_btn.style("visibility", "hidden"); } else { c3_btn.style("visibility", "visible"); }
+					c4_address = council_data[council4][5];
+					if (c4_address==""){ c4_btn.style("visibility", "hidden"); } else { c4_btn.style("visibility", "visible"); }
+					c5_address = council_data[council5][5];
+					if (c5_address==""){ c5_btn.style("visibility", "hidden"); } else { c5_btn.style("visibility", "visible"); }
+					c6_address = council_data[council6][5];
+					if (c6_address==""){ c6_btn.style("visibility", "hidden"); } else { c6_btn.style("visibility", "visible"); }
+			   })
+			   .on('mouseout', function(d){
+					var color2=d.properties.color;
+					d3.select(this).style("fill", color2);
+					tooltip.style("visibility", "hidden")
+			   })
+			   .on('click', function(d) {
+                  // clickされた時のインタラクション
+			   });
+	//区名表示ラベル追加
+	var xhr = new XMLHttpRequest();
+	xhr.onload = function(){
+		var tempArray = xhr.responseText.split("\n");
+		csvArray = new Array();
+		for(var i=0;i<tempArray.length;i++){
+			csvArray[i] = tempArray[i].split(",");
+			var data = csvArray[i];
+			var lonlat = [data[0], data[1]];
+			var xy = projection(lonlat);
+			//区名ラベル
+			map.append("text")
+			   .attr({
+			     x: xy[0]-20,
+				 y: xy[1],
+			    })
+			   .text(data[2]);
+		}
+	};	
+	xhr.open("get", "ku_label.csv", true);
+	xhr.send(null);
+	});
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76198163-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+	<div id="map"></div>
+</body>

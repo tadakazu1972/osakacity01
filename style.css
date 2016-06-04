@@ -1,0 +1,585 @@
+@charset "UTF-8";
+/* CSS Document */
+/* 基本設定クリア */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, input, textarea, legend, article, aside, footer, header, hgroup, menu, nav, section {
+	border: 0;
+	color: #000;
+	font-size: 100%;
+	font: inherit;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+
+/* 基本のレイアウト */
+body {
+	height:100%;
+	background: #fff;
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+svg {
+	background-color:#fff;
+}
+
+path {
+	fill:white;
+	stroke:black;
+	stroke-width:0.25;
+}
+
+text {
+	font-size:12px;
+}
+
+.tip {
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	margin:0 auto;
+	z-index:9999;
+	visibility:hidden;
+	overflow:hidden;
+	text-align:center;
+	font-size:40px;
+	font-weight:bold;
+	font-family:"ヒラギノ角ゴ Pro W3, "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif, Tahoma,Optima,Helvetica;
+	color:black;
+}
+
+.kucho_pic {
+	position:absolute;
+	top:0px;
+	left:0px;
+	z-index:99999;
+	visibility:visible;
+}
+
+.kucho_pic img {
+	width:60px !important;
+	height:60px !important;
+}
+
+.kucho_name {
+	position:absolute;
+	top:10px;
+	left:20px;
+	z-index:9999;
+	color:black;
+	font-size:20px;
+	font-family:"ヒラギノ角ゴ Pro W3, "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif, Tahoma,Optima,Helvetica;
+}
+
+.ku_hpbtn {
+	position:absolute;
+	top:44px;
+	left:10px;
+	width: 140px;
+	padding: 5px 0;
+	color: #EEE;
+	font-weight: normal;
+	text-align: center;
+	font-size: 20px;
+	transition: 1s;
+	background: -moz-linear-gradient(top,#BFD9E5, #3D95B7 50%,#0080B3 50%,#0099CC);
+        background: -webkit-gradient(linear, left top, left bottom, from(#BFD9E5), color-stop(0.5,#3D95B7), color-stop(0.5,#0080B3), to(#0099CC));
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border: 1px solid #0099CC;
+        -moz-box-shadow: 1px 1px 1px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 1px 1px 1px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+        text-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+}
+
+.ku_btn {
+	position:absolute;
+	top:96px;
+	left:10px;
+	width: 140px;
+	padding: 5px 0;
+	color: #EEE;
+	font-weight: normal;
+	text-align: center;
+	font-size: 20px;
+	transition: 1s;
+	background: -moz-linear-gradient(top,#BFD9E5, #3D95B7 50%,#0080B3 50%,#0099CC);
+        background: -webkit-gradient(linear, left top, left bottom, from(#BFD9E5), color-stop(0.5,#3D95B7), color-stop(0.5,#0080B3), to(#0099CC));
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border: 1px solid #0099CC;
+        -moz-box-shadow: 1px 1px 1px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 1px 1px 1px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+        text-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+}
+
+.poptoggle {
+	position:absolute;
+	top:10px;
+	right:10px;
+	width: 140px;
+	padding: 2px 0;
+	color: #111;
+	font-weight: normal;
+	text-align: center;
+	font-size: 18px;
+	transition: 1s;
+	background: -moz-linear-gradient(top,#BFD9E5 0%,#00CC99);
+        background: -webkit-gradient(linear, left top, left bottom, from(#BFD9E5), to(#00CC99));
+        border-radius: 20px;
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border: 1px solid #00CC99;
+        -moz-box-shadow: inset 1px 1px 1px rgba(000,000,000,0.3);
+        -webkit-box-shadow: inset 1px 1px 1px rgba(000,000,000,0.3);
+        text-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+}
+
+#poplblA { position:absolute; top: 50px; right: 10px; width: 140px; height:30px; text-align: center; border: 1px solid #111; font-size: 18px; background: #DDD; }
+#poplblB { position:absolute; top: 80px; right: 10px; width: 140px; height:20px; text-align: center; border: 1px solid #111; font-size: 12px; background: #DDD; }
+
+#poplbl0 { position:absolute; top:100px; right: 10px; width: 140px; height:30px; text-align: left; border: 1px solid #111; font-size: 20px; }
+#poplbl1 { position:absolute; top:130px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
+#poplbl2 { position:absolute; top:150px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none;}
+#poplbl3 { position:absolute; top:170px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
+#poplbl4 { position:absolute; top:190px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
+#poplbl5 { position:absolute; top:210px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
+#poplbl6 { position:absolute; top:230px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
+#poplbl7 { position:absolute; top:250px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
+#poplbl8 { position:absolute; top:270px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
+#poplbl9 { position:absolute; top:290px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
+#poplbl10 { position:absolute; top:310px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
+#poplbl11 { position:absolute; top:330px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
+#poplbl12 { position:absolute; top:350px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
+#poplbl13 { position:absolute; top:370px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
+#poplbl14 { position:absolute; top:390px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
+#poplbl15 { position:absolute; top:410px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
+#poplbl16 { position:absolute; top:430px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
+#poplbl17 { position:absolute; top:450px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
+#poplbl18 { position:absolute; top:470px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
+#poplbl19 { position:absolute; top:490px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
+#poplbl20 { position:absolute; top:510px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
+#poplbl21 { position:absolute; top:530px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
+#poplbl22 { position:absolute; top:550px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
+
+#pop0 {	position:absolute; top:100px; right:20px; text-aling: right; font-size:20px; }
+#pop1 {	position:absolute; top:130px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop2 {	position:absolute; top:150px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop3 {	position:absolute; top:170px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop4 {	position:absolute; top:190px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop5 {	position:absolute; top:210px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop6 {	position:absolute; top:230px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop7 {	position:absolute; top:250px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop8 {	position:absolute; top:270px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop9 {	position:absolute; top:290px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop10 { position:absolute; top:310px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop11 { position:absolute; top:330px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop12 { position:absolute; top:350px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop13 { position:absolute; top:370px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop14 { position:absolute; top:390px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop15 { position:absolute; top:410px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop16 { position:absolute; top:430px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop17 { position:absolute; top:450px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop18 { position:absolute; top:470px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop19 { position:absolute; top:490px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop20 { position:absolute; top:510px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop21 { position:absolute; top:530px; right:20px; text-align: right; font-size:12px; display: none; }
+#pop22 { position:absolute; top:550px; right:20px; text-align: right; font-size:12px; display: none; }
+
+.council_hpbtn {
+	position:absolute;
+	bottom:260px;
+	left:10px;
+	width: 140px;
+	padding: 5px 0;
+	color: #EEE;
+	font-weight: normal;
+	text-align: center;
+	font-size: 20px;
+	transition: 1s;
+	background: -moz-linear-gradient(top,#BFD9E5, #3D95B7 50%,#0080B3 50%,#0099CC);
+        background: -webkit-gradient(linear, left top, left bottom, from(#BFD9E5), color-stop(0.5,#3D95B7), color-stop(0.5,#0080B3), to(#0099CC));
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border: 1px solid #0099CC;
+        -moz-box-shadow: 1px 1px 1px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+        -webkit-box-shadow: 1px 1px 1px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+        text-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+}
+
+.council_hpbtn.hover:hover {
+	background: #55F;
+}
+
+#council1 {
+	position:absolute;
+	bottom:220px;
+	left:20px;
+	z-index:9999;
+	color:black;
+	font-size:20px;
+	font-family:"ヒラギノ角ゴ Pro W3, "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif, Tahoma,Optima,Helvetica;
+}
+
+#council2 {
+	position:absolute;
+	bottom:180px;
+	left:20px;
+	z-index:9999;
+	color:black;
+	font-size:20px;
+	font-family:"ヒラギノ角ゴ Pro W3, "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif, Tahoma,Optima,Helvetica;
+}
+
+#council3 {
+	position:absolute;
+	bottom:140px;
+	left:20px;
+	z-index:9999;
+	color:black;
+	font-size:20px;
+	font-family:"ヒラギノ角ゴ Pro W3, "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif, Tahoma,Optima,Helvetica;
+}
+
+#council4 {
+	position:absolute;
+	bottom:100px;
+	left:20px;
+	z-index:9999;
+	color:black;
+	font-size:20px;
+	font-family:"ヒラギノ角ゴ Pro W3, "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif, Tahoma,Optima,Helvetica;
+}
+
+#council5 {
+	position:absolute;
+	bottom:60px;
+	left:20px;
+	z-index:9999;
+	color:black;
+	font-size:20px;
+	font-family:"ヒラギノ角ゴ Pro W3, "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif, Tahoma,Optima,Helvetica;
+}
+
+#council6 {
+	position:absolute;
+	bottom:20px;
+	left:20px;
+	z-index:9999;
+	color:black;
+	font-size:20px;
+	font-family:"ヒラギノ角ゴ Pro W3, "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif, Tahoma,Optima,Helvetica;
+}
+
+#c1_btn {
+	position:absolute;
+	bottom:220px;
+	left:160px;
+	width: 100px;
+	padding: 2px 0;
+	color: #111;
+	font-weight: normal;
+	text-align: center;
+	font-size: 18px;
+	transition: 1s;
+	background: -moz-linear-gradient(top,#BFD9E5 0%,#00CC99);
+        background: -webkit-gradient(linear, left top, left bottom, from(#BFD9E5), to(#00CC99));
+        border-radius: 20px;
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border: 1px solid #00CC99;
+        -moz-box-shadow: inset 1px 1px 1px rgba(000,000,000,0.3);
+        -webkit-box-shadow: inset 1px 1px 1px rgba(000,000,000,0.3);
+        text-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+}
+
+#c2_btn {
+	position:absolute;
+	bottom:180px;
+	left:160px;
+	width: 100px;
+	padding: 2px 0;
+	color: #111;
+	font-weight: normal;
+	text-align: center;
+	font-size: 18px;
+	transition: 1s;
+	background: -moz-linear-gradient(top,#BFE5D9 0%,#00CC99);
+        background: -webkit-gradient(linear, left top, left bottom, from(#BFD9E5), to(#00CC99));
+        border-radius: 20px;
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border: 1px solid #00CC99;
+        -moz-box-shadow: inset 1px 1px 1px rgba(000,000,000,0.3);
+        -webkit-box-shadow: inset 1px 1px 1px rgba(000,000,000,0.3);
+        text-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+}
+
+#c3_btn {
+	position:absolute;
+	bottom:140px;
+	left:160px;
+	width: 100px;
+	padding: 2px 0;
+	color: #111;
+	font-weight: normal;
+	text-align: center;
+	font-size: 18px;
+	transition: 1s;
+	background: -moz-linear-gradient(top,#BFE5D9 0%,#00CC99);
+        background: -webkit-gradient(linear, left top, left bottom, from(#BFD9E5), to(#00CC99));
+        border-radius: 20px;
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border: 1px solid #00CC99;
+        -moz-box-shadow: inset 1px 1px 1px rgba(000,000,000,0.3);
+        -webkit-box-shadow: inset 1px 1px 1px rgba(000,000,000,0.3);
+        text-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+}
+
+#c4_btn {
+	position:absolute;
+	bottom:100px;
+	left:160px;
+	width: 100px;
+	padding: 2px 0;
+	color: #111;
+	font-weight: normal;
+	text-align: center;
+	font-size: 18px;
+	transition: 1s;
+	background: -moz-linear-gradient(top,#BFE5D9 0%,#00CC99);
+        background: -webkit-gradient(linear, left top, left bottom, from(#BFD9E5), to(#00CC99));
+        border-radius: 20px;
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border: 1px solid #00CC99;
+        -moz-box-shadow: inset 1px 1px 1px rgba(000,000,000,0.3);
+        -webkit-box-shadow: inset 1px 1px 1px rgba(000,000,000,0.3);        text-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+}
+
+#c5_btn {
+	position:absolute;
+	bottom:60px;
+	left:160px;
+	width: 100px;
+	padding: 2px 0;
+	color: #111;
+	font-weight: normal;
+	text-align: center;
+	font-size: 18px;
+	transition: 1s;
+	background: -moz-linear-gradient(top,#BFE5D9 0%,#00CC99);
+        background: -webkit-gradient(linear, left top, left bottom, from(#BFD9E5), to(#00CC99));
+        border-radius: 20px;
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border: 1px solid #00CC99;
+        -moz-box-shadow: inset 1px 1px 1px rgba(000,000,000,0.3);
+        -webkit-box-shadow: inset 1px 1px 1px rgba(000,000,000,0.3);        text-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+}
+
+#c6_btn {
+	position:absolute;
+	bottom:20px;
+	left:160px;
+	width: 100px;
+	padding: 2px 0;
+	color: #111;
+	font-weight: normal;
+	text-align: center;
+	font-size: 18px;
+	transition: 1s;
+	background: -moz-linear-gradient(top,#BFE5D9 0%,#00CC99);
+        background: -webkit-gradient(linear, left top, left bottom, from(#BFD9E5), to(#00CC99));
+        border-radius: 20px;
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border: 1px solid #00CC99;
+        -moz-box-shadow: inset 1px 1px 1px rgba(000,000,000,0.3);
+        -webkit-box-shadow: inset 1px 1px 1px rgba(000,000,000,0.3);        text-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+}
+
+/*RESPONSIVE: スマートフォン ウィンドウ幅600px以下*/
+@media screen and (max-width:600px) {
+	text {
+		display:none;
+	}
+	.tip {
+		font-size:18px;
+	}
+	.kucho_pic {
+		position:absolute;
+		top:0px;
+		left:0px;
+		z-index:99999;
+		visibility:visible;
+	}
+	.kucho_pic img {
+		width:60px !important;
+		height:60px !important;
+	}
+	.kucho_name {
+		position:absolute;
+		top:10px;
+		left:10px;
+		z-index:9999;
+		color:black;
+		font-size:14px;
+		font-family:"ヒラギノ角ゴ Pro W3, "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif, Tahoma,Optima,Helvetica;
+	}
+	.ku_population {
+		position:absolute;
+		top:10px;
+		right:10px;
+		z-index:9999;
+		color:black;
+		font-size:14px;
+		font-family:"ヒラギノ角ゴ Pro W3, "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif, Tahoma,Optima,Helvetica;
+	}
+	.ku_hpbtn {
+		top:34px;
+		padding: 2px 0;
+		width:60px;
+		font-size:12px;
+	}
+	.ku_btn {
+		top:68px;
+		padding: 2px 0;
+		width:60px;
+		font-size: 12px;
+	}
+	.poptoggle {
+		right: 0px;
+		width: 80px;
+		font-size:12px;
+	}
+#poplblA { position:absolute; top: 40px; right: 0px; width: 80px; height:20px; text-align: center; border: 0px solid #111; font-size: 8px; background: #DDD; }
+#poplblB { position:absolute; top: 60px; right: 0px; width: 80px; height:10px; text-align: center; border: 0px solid #111; font-size: 6px; background: #DDD; }
+
+#poplbl0 { position:absolute; top: 70px; right: 0px; width: 80px; height:20px; text-align: left; border: 0px solid #111; font-size: 8px; }
+#poplbl1 { position:absolute; top: 90px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; background: #EEE; }
+#poplbl2 { position:absolute; top:100px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; }
+#poplbl3 { position:absolute; top:110px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; background: #EEE; }
+#poplbl4 { position:absolute; top:120px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; }
+#poplbl5 { position:absolute; top:130px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; background: #EEE; }
+#poplbl6 { position:absolute; top:140px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; }
+#poplbl7 { position:absolute; top:150px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; background: #EEE; }
+#poplbl8 { position:absolute; top:160px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; }
+#poplbl9 { position:absolute; top:170px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; background: #EEE; }
+#poplbl10 { position:absolute; top:180px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; }
+#poplbl11 { position:absolute; top:190px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; background: #EEE; }
+#poplbl12 { position:absolute; top:200px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; }
+#poplbl13 { position:absolute; top:210px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; background: #EEE; }
+#poplbl14 { position:absolute; top:220px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; }
+#poplbl15 { position:absolute; top:230px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; background: #EEE; }
+#poplbl16 { position:absolute; top:240px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; }
+#poplbl17 { position:absolute; top:250px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; background: #EEE; }
+#poplbl18 { position:absolute; top:260px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; }
+#poplbl19 { position:absolute; top:270px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; background: #EEE; }
+#poplbl20 { position:absolute; top:280px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; }
+#poplbl21 { position:absolute; top:290px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; background: #EEE; }
+#poplbl22 { position:absolute; top:300px; right: 0px; width: 80px; height:10px; text-align: left; border: 0px solid #111; font-size: 8px; }
+
+#pop0 {	position:absolute; top: 70px; right:3px; text-aling: right; font-size:12px; }
+#pop1 {	position:absolute; top: 90px; right:3px; text-aling: right; font-size:10px; }
+#pop2 {	position:absolute; top:100px; right:3px; text-aling: right; font-size:10px; }
+#pop3 {	position:absolute; top:110px; right:3px; text-aling: right; font-size:10px; }
+#pop4 {	position:absolute; top:120px; right:3px; text-aling: right; font-size:10px; }
+#pop5 {	position:absolute; top:130px; right:3px; text-aling: right; font-size:10px; }
+#pop6 {	position:absolute; top:140px; right:3px; text-aling: right; font-size:10px; }
+#pop7 {	position:absolute; top:150px; right:3px; text-aling: right; font-size:10px; }
+#pop8 {	position:absolute; top:160px; right:3px; text-aling: right; font-size:10px; }
+#pop9 {	position:absolute; top:170px; right:3px; text-aling: right; font-size:10px; }
+#pop10 { position:absolute; top:180px; right:3px; text-aling: right; font-size:10px; }
+#pop11 { position:absolute; top:190px; right:3px; text-aling: right; font-size:10px; }
+#pop12 { position:absolute; top:200px; right:3px; text-aling: right; font-size:10px; }
+#pop13 { position:absolute; top:210px; right:3px; text-aling: right; font-size:10px; }
+#pop14 { position:absolute; top:220px; right:3px; text-aling: right; font-size:10px; }
+#pop15 { position:absolute; top:230px; right:3px; text-aling: right; font-size:10px; }
+#pop16 { position:absolute; top:240px; right:3px; text-aling: right; font-size:10px; }
+#pop17 { position:absolute; top:250px; right:3px; text-aling: right; font-size:10px; }
+#pop18 { position:absolute; top:260px; right:3px; text-aling: right; font-size:10px; }
+#pop19 { position:absolute; top:270px; right:3px; text-aling: right; font-size:10px; }
+#pop20 { position:absolute; top:280px; right:3px; text-aling: right; font-size:10px; }
+#pop21 { position:absolute; top:290px; right:3px; text-aling: right; font-size:10px; }
+#pop22 { position:absolute; top:300px; right:3px; text-aling: right; font-size:10px; }
+	.council_hpbtn {
+		bottom:154px;
+		width:60px;
+		padding: 2px 0;
+		font-size:10px;
+	}
+	#council1 {
+		bottom:130px;
+		left:10px;
+		font-size:14px;
+	}
+	#council2 {
+		bottom:106px;
+		left:10px;
+		font-size:14px;
+	}
+	#council3 {
+		bottom:82px;
+		left:10px;
+		font-size:14px;
+	}
+	#council4 {
+		bottom:58px;
+		left:10px;
+		font-size:14px;
+	}
+	#council5 {
+		bottom:34px;
+		left:10px;
+		font-size:14px;
+	}
+	#council6 {
+		bottom:10px;
+		left:10px;
+		font-size:14px;
+	}
+	#c1_btn {
+		bottom:130px;
+		left:100px;
+		width:60px;
+		font-size:10px;
+	}
+	#c2_btn {
+		bottom:106px;
+		left:100px;
+		width:60px;
+		font-size:10px;
+	}
+	#c3_btn {
+		bottom:82px;
+		left:100px;
+		width:60px;
+		font-size:10px;
+	}
+	#c4_btn {
+		bottom:58px;
+		left:100px;
+		width:60px;
+		font-size:10px;
+	}
+	#c5_btn {
+		bottom:34px;
+		left:100px;
+		width:60px;
+		font-size:10px;
+	}
+	#c6_btn {
+		bottom:10px;
+		left:100px;
+		width:60px;
+		font-size:10px;
+	}
+}
