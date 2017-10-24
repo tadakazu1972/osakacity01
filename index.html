@@ -104,99 +104,7 @@ $(function() {
 			var poplblA=d3.select('body').append('div').attr('id', "poplblA").text("年齢別推計人口")
 			var poplblB=d3.select('body').append('div').attr('id', "poplblB").text("平成26年10月")
 			var poplbl0=d3.select('body').append('div').attr('id', "poplbl0").text("総数")
-			var poplbl1=d3.select('body').append('div').attr('id', "poplbl1").text("0~4")
-			var poplbl2=d3.select('body').append('div').attr('id', "poplbl2").text("5~9")
-			var poplbl3=d3.select('body').append('div').attr('id', "poplbl3").text("10~14")
-			var poplbl4=d3.select('body').append('div').attr('id', "poplbl4").text("15~19")
-			var poplbl5=d3.select('body').append('div').attr('id', "poplbl5").text("20~24")
-			var poplbl6=d3.select('body').append('div').attr('id', "poplbl6").text("25~29")
-			var poplbl7=d3.select('body').append('div').attr('id', "poplbl7").text("30~34")
-			var poplbl8=d3.select('body').append('div').attr('id', "poplbl8").text("35~39")
-			var poplbl9=d3.select('body').append('div').attr('id', "poplbl9").text("40~44")
-			var poplbl10=d3.select('body').append('div').attr('id', "poplbl10").text("45~49")
-			var poplbl11=d3.select('body').append('div').attr('id', "poplbl11").text("50~54")
-			var poplbl12=d3.select('body').append('div').attr('id', "poplbl12").text("55~59")
-			var poplbl13=d3.select('body').append('div').attr('id', "poplbl13").text("60~64")
-			var poplbl14=d3.select('body').append('div').attr('id', "poplbl14").text("65~69")
-			var poplbl15=d3.select('body').append('div').attr('id', "poplbl15").text("70~74")
-			var poplbl16=d3.select('body').append('div').attr('id', "poplbl16").text("75~79")
-			var poplbl17=d3.select('body').append('div').attr('id', "poplbl17").text("80~84")
-			var poplbl18=d3.select('body').append('div').attr('id', "poplbl18").text("85~89")
-			var poplbl19=d3.select('body').append('div').attr('id', "poplbl19").text("90~94")
-			var poplbl20=d3.select('body').append('div').attr('id', "poplbl20").text("95~99")
-			var poplbl21=d3.select('body').append('div').attr('id', "poplbl21").text("100~")
-			var poplbl22=d3.select('body').append('div').attr('id', "poplbl22").text("不詳")
-			var pop0=d3.select('body').append('div').attr('id', "pop0")
-			var pop1=d3.select('body').append('div').attr('id', "pop1")
-			var pop2=d3.select('body').append('div').attr('id', "pop2")
-			var pop3=d3.select('body').append('div').attr('id', "pop3")
-			var pop4=d3.select('body').append('div').attr('id', "pop4")
-			var pop5=d3.select('body').append('div').attr('id', "pop5")
-			var pop6=d3.select('body').append('div').attr('id', "pop6")
-			var pop7=d3.select('body').append('div').attr('id', "pop7")
-			var pop8=d3.select('body').append('div').attr('id', "pop8")
-			var pop9=d3.select('body').append('div').attr('id', "pop9")
-			var pop10=d3.select('body').append('div').attr('id', "pop10")
-			var pop11=d3.select('body').append('div').attr('id', "pop11")
-			var pop12=d3.select('body').append('div').attr('id', "pop12")
-			var pop13=d3.select('body').append('div').attr('id', "pop13")
-			var pop14=d3.select('body').append('div').attr('id', "pop14")
-			var pop15=d3.select('body').append('div').attr('id', "pop15")
-			var pop16=d3.select('body').append('div').attr('id', "pop16")
-			var pop17=d3.select('body').append('div').attr('id', "pop17")
-			var pop18=d3.select('body').append('div').attr('id', "pop18")
-			var pop19=d3.select('body').append('div').attr('id', "pop19")
-			var pop20=d3.select('body').append('div').attr('id', "pop20")
-			var pop21=d3.select('body').append('div').attr('id', "pop21")
-			var pop22=d3.select('body').append('div').attr('id', "pop22")
-			//年齢別人口　表示/非表示切り替え
-			var poptoggle=d3.select('body').append('div').attr('class', "poptoggle")
-			poptoggle.text("表示/非表示").on('click', function(d){
-				$('#poplbl1').toggle();
-				$('#poplbl2').toggle();
-				$('#poplbl3').toggle();
-				$('#poplbl4').toggle();
-				$('#poplbl5').toggle();
-				$('#poplbl6').toggle();
-				$('#poplbl7').toggle();
-				$('#poplbl8').toggle();
-				$('#poplbl9').toggle();
-				$('#poplbl10').toggle();
-				$('#poplbl11').toggle();
-				$('#poplbl12').toggle();
-				$('#poplbl13').toggle();
-				$('#poplbl14').toggle();
-				$('#poplbl15').toggle();
-				$('#poplbl16').toggle();
-				$('#poplbl17').toggle();
-				$('#poplbl18').toggle();
-				$('#poplbl19').toggle();
-				$('#poplbl20').toggle();
-				$('#poplbl21').toggle();
-				$('#poplbl22').toggle();
-				$('#pop1').toggle();
-				$('#pop2').toggle();
-				$('#pop3').toggle();
-				$('#pop4').toggle();
-				$('#pop5').toggle();
-				$('#pop6').toggle();
-				$('#pop7').toggle();
-				$('#pop8').toggle();
-				$('#pop9').toggle();
-				$('#pop10').toggle();
-				$('#pop11').toggle();
-				$('#pop12').toggle();
-				$('#pop13').toggle();
-				$('#pop14').toggle();
-				$('#pop15').toggle();
-				$('#pop16').toggle();
-				$('#pop17').toggle();
-				$('#pop18').toggle();
-				$('#pop19').toggle();
-				$('#pop20').toggle();
-				$('#pop21').toggle();
-				$('#pop22').toggle();
-			});
+
 			//区選出議員市会HPボタン生成
 			var council_hpbtn=d3.select('body').append('div').attr('class', "council_hpbtn hover")
 			council_hpbtn.text("議員名簿HP").on('click', function(d) { window.location.href=council_hp; });
@@ -272,28 +180,6 @@ $(function() {
 					kucho_name.text(kuchoname)
 					//区　人口
 					pop0.text(ku_data[select_ku][13]) //総数
-					pop1.text(ku_data[select_ku][14])
-					pop2.text(ku_data[select_ku][15])
-					pop3.text(ku_data[select_ku][16])
-					pop4.text(ku_data[select_ku][17])
-					pop5.text(ku_data[select_ku][18])
-					pop6.text(ku_data[select_ku][19])
-					pop7.text(ku_data[select_ku][20])
-					pop8.text(ku_data[select_ku][21])
-					pop9.text(ku_data[select_ku][22])
-					pop10.text(ku_data[select_ku][23])
-					pop11.text(ku_data[select_ku][24])
-					pop12.text(ku_data[select_ku][25])
-					pop13.text(ku_data[select_ku][26])
-					pop14.text(ku_data[select_ku][27])
-					pop15.text(ku_data[select_ku][28])
-					pop16.text(ku_data[select_ku][29])
-					pop17.text(ku_data[select_ku][30])
-					pop18.text(ku_data[select_ku][31])
-					pop19.text(ku_data[select_ku][32])
-					pop20.text(ku_data[select_ku][33])
-					pop21.text(ku_data[select_ku][34])
-					pop22.text(ku_data[select_ku][35])
 					//議員
 					var c1_name = council_data[council1][1];
 					var c2_name = council_data[council2][1];
