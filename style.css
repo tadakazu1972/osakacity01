@@ -144,52 +144,7 @@ text {
 #poplblB { position:absolute; top: 80px; right: 10px; width: 140px; height:20px; text-align: center; border: 1px solid #111; font-size: 12px; background: #DDD; }
 
 #poplbl0 { position:absolute; top:100px; right: 10px; width: 140px; height:30px; text-align: left; border: 1px solid #111; font-size: 20px; }
-#poplbl1 { position:absolute; top:130px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
-#poplbl2 { position:absolute; top:150px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none;}
-#poplbl3 { position:absolute; top:170px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
-#poplbl4 { position:absolute; top:190px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
-#poplbl5 { position:absolute; top:210px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
-#poplbl6 { position:absolute; top:230px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
-#poplbl7 { position:absolute; top:250px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
-#poplbl8 { position:absolute; top:270px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
-#poplbl9 { position:absolute; top:290px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
-#poplbl10 { position:absolute; top:310px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
-#poplbl11 { position:absolute; top:330px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
-#poplbl12 { position:absolute; top:350px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
-#poplbl13 { position:absolute; top:370px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
-#poplbl14 { position:absolute; top:390px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
-#poplbl15 { position:absolute; top:410px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
-#poplbl16 { position:absolute; top:430px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
-#poplbl17 { position:absolute; top:450px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
-#poplbl18 { position:absolute; top:470px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
-#poplbl19 { position:absolute; top:490px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
-#poplbl20 { position:absolute; top:510px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
-#poplbl21 { position:absolute; top:530px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; background: #EEE; display: none; }
-#poplbl22 { position:absolute; top:550px; right: 10px; width: 140px; height:20px; text-align: left; border: 1px solid #111; font-size: 12px; display: none; }
-
 #pop0 {	position:absolute; top:100px; right:20px; text-aling: right; font-size:20px; }
-#pop1 {	position:absolute; top:130px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop2 {	position:absolute; top:150px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop3 {	position:absolute; top:170px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop4 {	position:absolute; top:190px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop5 {	position:absolute; top:210px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop6 {	position:absolute; top:230px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop7 {	position:absolute; top:250px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop8 {	position:absolute; top:270px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop9 {	position:absolute; top:290px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop10 { position:absolute; top:310px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop11 { position:absolute; top:330px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop12 { position:absolute; top:350px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop13 { position:absolute; top:370px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop14 { position:absolute; top:390px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop15 { position:absolute; top:410px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop16 { position:absolute; top:430px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop17 { position:absolute; top:450px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop18 { position:absolute; top:470px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop19 { position:absolute; top:490px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop20 { position:absolute; top:510px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop21 { position:absolute; top:530px; right:20px; text-align: right; font-size:12px; display: none; }
-#pop22 { position:absolute; top:550px; right:20px; text-align: right; font-size:12px; display: none; }
 
 .council_hpbtn {
 	position:absolute;
