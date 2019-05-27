@@ -102,7 +102,7 @@ $(function() {
 				  });
 			//区人口表示「枠」生成
 			var poplblA=d3.select('body').append('div').attr('id', "poplblA").text("推計人口")
-			var poplblB=d3.select('body').append('div').attr('id', "poplblB").text("平成29年10月")
+			var poplblB=d3.select('body').append('div').attr('id', "poplblB").text("令和元年5月1日")
 			var poplbl0=d3.select('body').append('div').attr('id', "poplbl0").text("総数")
 			var pop0=d3.select('body').append('div').attr('id', "pop0")
 			//区選出議員市会HPボタン生成
@@ -179,7 +179,7 @@ $(function() {
 					var kuchoname="区長 "+ku_data[select_ku][2];
 					kucho_name.text(kuchoname)
 					//区　人口
-					pop0.text(ku_data[select_ku][13]) //総数
+					pop0.text(ku_data[select_ku][3]) //総数
 					//議員
 					var c1_name = council_data[council1][1];
 					var c2_name = council_data[council2][1];
