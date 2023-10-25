@@ -25,6 +25,8 @@ function getKuData(){
 		}
 		//console.log(ku_data);
 	};
+	//キャッシュされたcsvを読むと更新されたデータ表示されないためtimeパラメータをつけて毎度読み込み
+	var csvfile = "ku_data.csv?time="+new Date().getTime();
 	xhr.open("get", "ku_data.csv", true);
 	xhr.send(null);
 }
